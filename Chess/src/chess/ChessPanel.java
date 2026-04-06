@@ -109,8 +109,12 @@ public class ChessPanel extends JPanel {
 // Write that code function . because Black Pawn could move // and last check king 
                                 System.out.println("Black Pawn");
                             } else if ((pastIndex == 15 || pastIndex == 8) && MovingElement.ValidRookMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
- System.out.println("All rook ");
-                            }
+                                System.out.println("All rook ");
+                            } else if ((pastIndex == 9 || pastIndex == 14) && MovingElement.ValidKnightMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("Knight is running");
+                            } else if ((pastIndex == 10 || pastIndex == 13) && MovingElement.ValidBishopMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("bishop is running");
+                            }// write next;
 
                         }
 
