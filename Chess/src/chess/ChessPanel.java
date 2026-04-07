@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -24,8 +25,9 @@ import javax.swing.JPanel;
 public class ChessPanel extends JPanel {
 
     ArrayList<ImageIcon> pieces = new ArrayList<>();
-    private int selectedRow = -1;
-    private int selectedCol = -1;
+    public static int selectedRow = -1;
+    public static int selectedCol = -1;
+    private Timer timer;
 
     ChessPanel() {
         setPreferredSize(new Dimension(650, 650));
@@ -109,16 +111,33 @@ public class ChessPanel extends JPanel {
 // Write that code function . because Black Pawn could move // and last check king 
                                 System.out.println("Black Pawn");
                             } else if ((pastIndex == 15 || pastIndex == 8) && MovingElement.ValidRookMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
-                                System.out.println("All rook ");
+                                System.out.println("All rook " + allPoints.Positions[pastIndex]);
+
+                                Animation.RookOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                 //Hope it well
                             } else if ((pastIndex == 9 || pastIndex == 14) && MovingElement.ValidKnightMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
                                 System.out.println("Knight is running");
+                                Animation.KnightOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
                             } else if ((pastIndex == 10 || pastIndex == 13) && MovingElement.ValidBishopMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
                                 System.out.println("bishop is running");
+                                Animation.BishopofBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
                             }// write next;
+                            else if ((pastIndex == 11) && MovingElement.ValidQueenMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("Queen is moving");
+                                Animation.QueenOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
+                            } else if (pastIndex == 12 && MovingElement.ValidKingMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("king is moving");
+                                Animation.KingOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
+                            }
 
                         }
 
                     }
+                    // will be mood change ;
 
                 }
             }
@@ -152,48 +171,63 @@ public class ChessPanel extends JPanel {
                 g2D.fillRect(col * cell, row * cell, cell, cell); // col=x, row=y
             }
         }
+
+        for (int i = 0; i < 32; i++) {
+            if (allPoints.Positions[i] != null) {
+                g2D.drawImage(
+                        pieces.get(i).getImage(),
+                        allPoints.Positions[i].x,
+                        allPoints.Positions[i].y,
+                        80, 80, this
+                );
+            }
+        }
         System.out.println(pieces.size());
 
-        g2D.drawImage(pieces.get(0).getImage(), 0, 480, 80, 80, this);
-        g2D.drawImage(pieces.get(1).getImage(), 80, 480, 80, 80, this);
-        g2D.drawImage(pieces.get(2).getImage(), 160, 480, 80, 80, this);
-        g2D.drawImage(pieces.get(3).getImage(), 240, 480, 80, 80, this);
-        g2D.drawImage(pieces.get(4).getImage(), 320, 480, 80, 80, this);
-        g2D.drawImage(pieces.get(5).getImage(), 400, 480, 80, 80, this);
-        g2D.drawImage(pieces.get(6).getImage(), 480, 480, 80, 80, this);
-        g2D.drawImage(pieces.get(7).getImage(), 560, 480, 80, 80, this);// Add all pawns in the board 
-        g2D.drawImage(pieces.get(8).getImage(), 0, 560, 80, 80, this);
-        g2D.drawImage(pieces.get(9).getImage(), 80, 560, 80, 80, this);
-
-        g2D.drawImage(pieces.get(10).getImage(), 160, 560, 80, 80, this);
-        g2D.drawImage(pieces.get(11).getImage(), 240, 560, 80, 80, this);
-        g2D.drawImage(pieces.get(12).getImage(), 320, 560, 80, 80, this);
-        g2D.drawImage(pieces.get(13).getImage(), 400, 560, 80, 80, this);
-        g2D.drawImage(pieces.get(14).getImage(), 480, 560, 80, 80, this);
-        g2D.drawImage(pieces.get(15).getImage(), 560, 560, 80, 80, this);
-
-        // g2D.drawImage(pieces.get(15).getImage(), 0, 0, 80, 80, this);
-        g2D.drawImage(pieces.get(16).getImage(), 0, 80, 80, 80, this);
-        g2D.drawImage(pieces.get(17).getImage(), 80, 80, 80, 80, this);
-        g2D.drawImage(pieces.get(18).getImage(), 160, 80, 80, 80, this);
-        g2D.drawImage(pieces.get(19).getImage(), 240, 80, 80, 80, this);
-
-        g2D.drawImage(pieces.get(20).getImage(), 320, 80, 80, 80, this);
-        g2D.drawImage(pieces.get(21).getImage(), 400, 80, 80, 80, this);
-        g2D.drawImage(pieces.get(22).getImage(), 480, 80, 80, 80, this);
-        g2D.drawImage(pieces.get(23).getImage(), 560, 80, 80, 80, this);
-        // Draw all White pawn; 
-        // g2D.drawImage(pieces.get(16).getImage(), 80, 320, 80, 80, this);
-
-        g2D.drawImage(pieces.get(24).getImage(), 0, 0, 80, 80, this);
-        g2D.drawImage(pieces.get(25).getImage(), 80, 0, 80, 80, this);
-        g2D.drawImage(pieces.get(26).getImage(), 160, 0, 80, 80, this);
-        g2D.drawImage(pieces.get(27).getImage(), 240, 0, 80, 80, this);
-
-        g2D.drawImage(pieces.get(28).getImage(), 320, 0, 80, 80, this);
-        g2D.drawImage(pieces.get(29).getImage(), 400, 0, 80, 80, this);
-        g2D.drawImage(pieces.get(30).getImage(), 480, 0, 80, 80, this);
-        g2D.drawImage(pieces.get(31).getImage(), 560, 0, 80, 80, this);
-
     }
+
+    public void animateMove(int index, Point start, Point end, Runnable callback) {
+
+        // Set initial position
+        allPoints.Positions[index] = new Point(start.x, start.y);
+
+        int speed = 8;
+
+        Timer timer = new Timer(2, e -> {
+            Point current = allPoints.Positions[index];
+            int x = current.x;
+            int y = current.y;
+
+            // Move toward target
+            if (x < end.x) {
+                x += speed;
+            }
+            if (x > end.x) {
+                x -= speed;
+            }
+
+            if (y < end.y) {
+                y += speed;
+            }
+            if (y > end.y) {
+                y -= speed;
+            }
+
+            allPoints.Positions[index] = new Point(x, y);
+            repaint();
+
+            // Stop condition
+            if (Math.abs(x - end.x) <= speed && Math.abs(y - end.y) <= speed) {
+                allPoints.Positions[index] = new Point(end.x, end.y);
+                ((Timer) e.getSource()).stop(); // stop this timer
+                if (callback != null) {
+                    callback.run();
+                }
+            }
+        });
+
+        timer.start();
+        System.out.println(allPoints.Positions[index]);
+    }
+
 }

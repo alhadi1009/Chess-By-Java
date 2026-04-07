@@ -11,5 +11,7 @@ package chess;
 public class Indicator {
     public static boolean firstPersonIndicator=true;
     public static boolean secondPersonIndicator=false;
+    public static boolean isWhiteKingUnderAttack=false;
+    public static boolean isBlackKingUnderAttack=false;
     
 }

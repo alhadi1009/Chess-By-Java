@@ -64,6 +64,10 @@ public class MovingElement {
             if ((check > 15 && index > 15) || (check <= 15 && index <= 15)) {
                 return false;
             }
+             if((index>15 && check==12)||(index<=15 && check==28))
+            {
+                return false;
+            }
         }
         if (past.x == present.x) {
             if (past.y > present.y) {
@@ -109,6 +113,10 @@ public class MovingElement {
             if ((check > 15 && index > 15) || (check <= 15 && index <= 15)) {
                 return false;
             }
+             if((index>15 && check==12)||(index<=15 && check==28))
+            {
+                return false;
+            }
         }
         int X1 = Math.abs(present.x - past.x);
         int Y1 = Math.abs(present.y - past.y);
@@ -123,6 +131,10 @@ public class MovingElement {
         if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
             int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
             if ((check > 15 && index > 15) || (check <= 15 && index <= 15)) {
+                return false;
+            }
+           if((index>15 && check==12)||(index<=15 && check==28))
+            {
                 return false;
             }
         }
@@ -156,6 +168,27 @@ public class MovingElement {
         } else if (present.x > past.x && present.y < past.y) {
             for (int i = 1; i < X1; i++) {
                 if (LoopingSystem.isPlayerPositioned(new Point((past.x + i) * 80, (past.y - i) * 80))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean ValidQueenMoveBlack(Point past, Point present, int index) {
+
+        return (ValidBishopMoveBlack(past, present, index) | ValidRookMoveBlack(past, present, index));
+    }
+
+    public static boolean ValidKingMoveBlack(Point past, Point present, int index) {
+        int X1 = Math.abs(past.x - present.x);
+        int Y1 = Math.abs(past.y - present.y);
+        if (X1 <= 1 && Y1 <= 1) {
+            if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
+                int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
+                System.out.println("1");
+                if ((check > 15 && index > 15) || (check <= 15 && index <= 15)) {
                     return false;
                 }
             }
