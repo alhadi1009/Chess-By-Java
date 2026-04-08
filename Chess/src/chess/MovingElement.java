@@ -19,53 +19,68 @@ public class MovingElement {
 
     public static boolean ValidPawnMoveBlack(Point past, Point present, int index) {
         //  System.out.println("Points"+present.x+present.y+past.x+past.y);
+        if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
+            int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
+            System.out.println("1");
+            if ((check <= 0 && check > 15 && index > 15) || (check <= 15 && index <= 15)) {
+                return false;
+            }
+            if ((index > 15 && check == 12) || (index <= 15 && check == 28)) {
+                return false;
+            }
+        }
 
-        if (past.y - present.y > 2) {
-            //System.out.println("Position="+past.x*80+"  " +(past.y) *80 );
-
+        if (Math.abs(present.x - past.x) > 1 || Math.abs(present.y - past.y) > 2) {
             return false;
         }
-
-        if (BlackPawn.get(index) && past.y - present.y == 2 && present.x == past.x) {
-            for (int i = 1; i < 3; i++) {
-                if (LoopingSystem.isPlayerPositioned(new Point(past.x * 80, (past.y - i) * 80))) {
-                    // System.out.println("Position="+past.x*80+"  " +(past.y-i) *80 );
-                    return false;
+        if (index < 8) {
+            if (present.x == past.x && past.y - present.y == 2 && BlackPawn.get(index)) {
+                BlackPawn.set(index, false);
+                return true;
+            }
+            if (present.x == past.x && past.y - present.y == 1 && !(LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80)))) {
+                BlackPawn.set(index, false);
+                return true;
+            }
+            if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
+                int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
+                if (Math.abs(present.x - past.x) == 1 && past.y - present.y == 1 && check >= 16) {
+                    return true;
                 }
-            }
-            return true;
-        }
-        if (past.y - present.y == 1 && present.x == past.x) {                   //  System.out.println("Position="+past.x*80+"  " +(past.y) *80 );
 
-            if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, (present.y - 1) * 80))) {
-                return false;
-            } else {
+            }
+        } else { // int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
+            if (present.x == past.x && present.y - past.y == 2 && WhitePawn.get(index)) {
+                WhitePawn.set(index, false);
                 return true;
             }
-        }
-        if (past.y - present.y == 1 && past.x - present.x == 1) {
-            int Oposite = LoopingSystem.isPlayerIndex(new Point(present.y * 80, present.x * 80));
-            if (Oposite > 15) {
+            if (present.x == past.x && present.y - past.y == 1 && (!LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80)))) {
+                WhitePawn.set(index, false);
                 return true;
+            }
+            if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
+                int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
+                if (Math.abs(present.x - past.x) == 1 && present.y - past.y == 1 && check < 16) {
+                    return true;
+                }
+
             }
 
         }
-
-        //System.out.println("Hello hi bye" );
         return false;
     }
 
+    // THIS PART IS COMPLETE ; OK 
     public static boolean ValidRookMoveBlack(Point past, Point present, int index) {
 
         System.out.println("past.x" + past.x + "past.y" + past.y + "present.x" + present.x + "present.y" + present.y);
         if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
             int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
             System.out.println("1");
-            if ((check > 15 && index > 15) || (check <= 15 && index <= 15)) {
+            if ((check <= 0 && check > 15 && index > 15) || (check <= 15 && index <= 15)) {
                 return false;
             }
-             if((index>15 && check==12)||(index<=15 && check==28))
-            {
+            if ((index > 15 && check == 12) || (index <= 15 && check == 28)) {
                 return false;
             }
         }
@@ -110,11 +125,10 @@ public class MovingElement {
         if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
             int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
             System.out.println("1");
-            if ((check > 15 && index > 15) || (check <= 15 && index <= 15)) {
+            if ((check <= 0 && check > 15 && index > 15) || (check <= 15 && index <= 15)) {
                 return false;
             }
-             if((index>15 && check==12)||(index<=15 && check==28))
-            {
+            if ((index > 15 && check == 12) || (index <= 15 && check == 28)) {
                 return false;
             }
         }
@@ -130,11 +144,10 @@ public class MovingElement {
     public static boolean ValidBishopMoveBlack(Point past, Point present, int index) {
         if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
             int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
-            if ((check > 15 && index > 15) || (check <= 15 && index <= 15)) {
+            if ((check <= 0 && check > 15 && index > 15) || (check <= 15 && index <= 15)) {
                 return false;
             }
-           if((index>15 && check==12)||(index<=15 && check==28))
-            {
+            if ((index > 15 && check == 12) || (index <= 15 && check == 28)) {
                 return false;
             }
         }
@@ -188,7 +201,7 @@ public class MovingElement {
             if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
                 int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
                 System.out.println("1");
-                if ((check > 15 && index > 15) || (check <= 15 && index <= 15)) {
+                if ((check <= 0 && check > 15 && index > 15) || (check <= 15 && index <= 15)) {
                     return false;
                 }
             }

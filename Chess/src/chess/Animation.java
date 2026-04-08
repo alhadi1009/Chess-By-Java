@@ -13,14 +13,14 @@ import java.awt.Point;
 public class Animation {
 
     public static void RookOfBlack(ChessPanel panel, Point past, Point present, int index) {
-       
+        allPoints.Positions[index] = present;
         if (TracSystem.IsMyKingSafe(index)) {
             // Convert board coordinates to pixels
             past.x *= 80;
             past.y *= 80;
             present.x *= 80;
             present.y *= 80;
- System.out.println("hello");
+            System.out.println("hello");
             // Animate move with callback
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
@@ -39,27 +39,29 @@ public class Animation {
                 if (MovingElement.ValidRookMoveBlack(past, present, index)) {
                     if (index > 15) {
                         Indicator.isBlackKingUnderAttack = true;
-                    }
-                    else 
-                    {
-                         Indicator.isWhiteKingUnderAttack=true;
+                    } else {
+                        Indicator.isWhiteKingUnderAttack = true;
                     }
                 }
 
             });
             ChessPanel.selectedCol = -1;
             ChessPanel.selectedRow = -1;
+        } else {
+            allPoints.Positions[index] = past;
         }
     }
-    public static void KnightOfBlack(ChessPanel panel, Point past, Point present, int index)
-    {
-         if (TracSystem.IsMyKingSafe(index)) {
+
+    public static void KnightOfBlack(ChessPanel panel, Point past, Point present, int index) {
+        allPoints.Positions[index] = present;
+
+        if (TracSystem.IsMyKingSafe(index)) {
             // Convert board coordinates to pixels
             past.x *= 80;
             past.y *= 80;
             present.x *= 80;
             present.y *= 80;
- System.out.println("hello");
+            System.out.println("hello");
             // Animate move with callback
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
@@ -78,27 +80,29 @@ public class Animation {
                 if (MovingElement.ValidKnightMoveBlack(past, present, index)) {
                     if (index > 15) {
                         Indicator.isBlackKingUnderAttack = true;
-                    }
-                    else 
-                    {
-                         Indicator.isWhiteKingUnderAttack=true;
+                    } else {
+                        Indicator.isWhiteKingUnderAttack = true;
                     }
                 }
 
             });
             ChessPanel.selectedCol = -1;
             ChessPanel.selectedRow = -1;
+        } else {
+            allPoints.Positions[index] = past;
         }
     }
-    public static void BishopofBlack(ChessPanel panel, Point past, Point present, int index)
-    {
-     if (TracSystem.IsMyKingSafe(index)) {
+
+    public static void BishopofBlack(ChessPanel panel, Point past, Point present, int index) {
+        allPoints.Positions[index] = present;
+
+        if (TracSystem.IsMyKingSafe(index)) {
             // Convert board coordinates to pixels
             past.x *= 80;
             past.y *= 80;
             present.x *= 80;
             present.y *= 80;
- System.out.println("hello");
+            System.out.println("hello");
             // Animate move with callback
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
@@ -117,28 +121,29 @@ public class Animation {
                 if (MovingElement.ValidBishopMoveBlack(past, present, index)) {
                     if (index > 15) {
                         Indicator.isBlackKingUnderAttack = true;
-                    }
-                    else 
-                    {
-                         Indicator.isWhiteKingUnderAttack=true;
+                    } else {
+                        Indicator.isWhiteKingUnderAttack = true;
                     }
                 }
 
             });
             ChessPanel.selectedCol = -1;
             ChessPanel.selectedRow = -1;
-        }   
+        } else {
+            allPoints.Positions[index] = past;
+        }
     }
-    
-    public static void QueenOfBlack(ChessPanel panel, Point past, Point present, int index)
-    {
+
+    public static void QueenOfBlack(ChessPanel panel, Point past, Point present, int index) {
+        allPoints.Positions[index] = present;
+
         if (TracSystem.IsMyKingSafe(index)) {
             // Convert board coordinates to pixels
             past.x *= 80;
             past.y *= 80;
             present.x *= 80;
             present.y *= 80;
- System.out.println("hello");
+            System.out.println("hello");
             // Animate move with callback
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
@@ -157,31 +162,27 @@ public class Animation {
                 if (MovingElement.ValidQueenMoveBlack(past, present, index)) {
                     if (index > 15) {
                         Indicator.isBlackKingUnderAttack = true;
-                    }
-                    else 
-                    {
-                         Indicator.isWhiteKingUnderAttack=true;
+                    } else {
+                        Indicator.isWhiteKingUnderAttack = true;
                     }
                 }
 
             });
             ChessPanel.selectedCol = -1;
             ChessPanel.selectedRow = -1;
-        }  
+        } else {
+            allPoints.Positions[index] = past;
+        }
     }
-    
-    
-    
-    public static void KingOfBlack(ChessPanel panel, Point past, Point present, int index)
-    {
-        if(TracSystem.IsMyKingSafeByOwn(index, present))
-        {
-            
-          past.x *= 80;
+
+    public static void KingOfBlack(ChessPanel panel, Point past, Point present, int index) {
+        if (TracSystem.IsMyKingSafeByOwn(index, present)) {
+
+            past.x *= 80;
             past.y *= 80;
             present.x *= 80;
             present.y *= 80;
- System.out.println("hello");
+            System.out.println("hello");
             // Animate move with callback
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
@@ -200,17 +201,56 @@ public class Animation {
                 if (MovingElement.ValidKingMoveBlack(past, present, index)) {
                     if (index > 15) {
                         Indicator.isBlackKingUnderAttack = true;
-                    }
-                    else 
-                    {
-                         Indicator.isWhiteKingUnderAttack=true;
+                    } else {
+                        Indicator.isWhiteKingUnderAttack = true;
                     }
                 }
 
             });
             ChessPanel.selectedCol = -1;
             ChessPanel.selectedRow = -1;
-        } 
+        }
+    }
+    public static void PawnOfBlack(ChessPanel panel, Point past, Point present, int index)
+    {
+         allPoints.Positions[index] = present;
+
+        if (TracSystem.IsMyKingSafe(index)) {
+            // Convert board coordinates to pixels
+            past.x *= 80;
+            past.y *= 80;
+            present.x *= 80;
+            present.y *= 80;
+            System.out.println("hello");
+            // Animate move with callback
+            panel.animateMove(index, past, present, () -> {
+                // Callback runs after animation finishes
+                System.out.println("Queen move completed!");
+                past.x = allPoints.Positions[index].x / 80;
+                past.y = allPoints.Positions[index].y / 80;
+                if (index > 15) {
+                    present.x = allPoints.Positions[13].x / 80;
+                    present.y = allPoints.Positions[13].y / 80;
+
+                } else {
+                    present.x = allPoints.Positions[28].x / 80;
+                    present.y = allPoints.Positions[28].y / 80;
+                }
+
+                if (MovingElement.ValidPawnMoveBlack(past, present, index)) {
+                    if (index > 15) {
+                        Indicator.isBlackKingUnderAttack = true;
+                    } else {
+                        Indicator.isWhiteKingUnderAttack = true;
+                    }
+                }
+
+            });
+            ChessPanel.selectedCol = -1;
+            ChessPanel.selectedRow = -1;
+        } else {
+            allPoints.Positions[index] = past;
+        }
     }
 
 }

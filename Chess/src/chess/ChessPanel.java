@@ -110,6 +110,8 @@ public class ChessPanel extends JPanel {
                             if (pastIndex >= 0 && pastIndex <= 7 && MovingElement.ValidPawnMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
 // Write that code function . because Black Pawn could move // and last check king 
                                 System.out.println("Black Pawn");
+                                Animation.PawnOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                // is it well
                             } else if ((pastIndex == 15 || pastIndex == 8) && MovingElement.ValidRookMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
                                 System.out.println("All rook " + allPoints.Positions[pastIndex]);
 
