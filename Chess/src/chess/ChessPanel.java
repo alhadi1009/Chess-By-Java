@@ -83,7 +83,7 @@ public class ChessPanel extends JPanel {
                 //System.out.println("value of Y" + e.getY() / 80);
 
                 if (Indicator.firstPersonIndicator) {
-                    Indicator.secondPersonIndicator = false;
+                    //  Indicator.secondPersonIndicator = false;
                     int col = e.getX() / 80;
                     int row = e.getY() / 80;
 
@@ -116,7 +116,7 @@ public class ChessPanel extends JPanel {
                                 System.out.println("All rook " + allPoints.Positions[pastIndex]);
 
                                 Animation.RookOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
-                                 //Hope it well
+                                //Hope it well
                             } else if ((pastIndex == 9 || pastIndex == 14) && MovingElement.ValidKnightMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
                                 System.out.println("Knight is running");
                                 Animation.KnightOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
@@ -140,6 +140,62 @@ public class ChessPanel extends JPanel {
 
                     }
                     // will be mood change ;
+                } else if (Indicator.secondPersonIndicator) {
+                    //Indicator.firstPersonIndicator=false;
+                    int col = e.getX() / 80;
+                    int row = e.getY() / 80;
+
+                    Point target = new Point(col * 80, row * 80);
+                    if (LoopingSystem.isPlayerPositioned(target) && LoopingSystem.isPlayerIndex(target) > 15) {
+                        // System.out.println("hello World!");
+                        if (row == selectedRow && col == selectedCol) {
+                            selectedRow = -1;
+                            selectedCol = -1;
+                        } else {
+                            // Select new square
+                            selectedRow = row;
+                            selectedCol = col;
+                        }
+                        repaint();
+                    } else {
+                        if (selectedRow != -1 && selectedCol != -1) {
+                            int pastIndex = LoopingSystem.isPlayerIndex(new Point(selectedCol * 80, selectedRow * 80));
+                            int presentIndex = LoopingSystem.isPlayerIndex(new Point(col * 80, row * 80));
+
+                            System.out.println("Past index" + pastIndex);
+                            System.out.println("present index" + presentIndex);
+                            // 0 to 7 ok remember it hadi ;
+                            if (pastIndex >= 16 && pastIndex <= 23 && MovingElement.ValidPawnMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+// Write that code function . because Black Pawn could move // and last check king 
+                                System.out.println("Black Pawn");
+                                Animation.PawnOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                // is it well
+                            } else if ((pastIndex == 24 || pastIndex == 31) && MovingElement.ValidRookMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("All rook " + allPoints.Positions[pastIndex]);
+
+                                Animation.RookOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
+                            } else if ((pastIndex == 25 || pastIndex == 30) && MovingElement.ValidKnightMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("Knight is running");
+                                Animation.KnightOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
+                            } else if ((pastIndex == 26 || pastIndex == 29) && MovingElement.ValidBishopMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("bishop is running");
+                                Animation.BishopofBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
+                            }// write next;
+                            else if ((pastIndex == 27) && MovingElement.ValidQueenMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("Queen is moving");
+                                Animation.QueenOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
+                            } else if (pastIndex == 28 && MovingElement.ValidKingMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
+                                System.out.println("king is moving");
+                                Animation.KingOfBlack(ChessPanel.this, new Point(selectedCol, selectedRow), new Point(col, row), pastIndex);
+                                //Hope it well
+                            }
+
+                        }
+                    }
 
                 }
             }
@@ -229,6 +285,7 @@ public class ChessPanel extends JPanel {
         });
 
         timer.start();
+       
         System.out.println(allPoints.Positions[index]);
     }
 

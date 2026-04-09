@@ -15,21 +15,15 @@ public class allPoints {
     public static Point[] Positions = new Point[32];
 
     static {
-       // Positions[0] = new Point(0, 480);
-       Positions[1]=new Point(1000,1000);
-       
-        Positions[3]=new Point(1000,1000); Positions[4]=new Point(1000,1000);
-                Positions[0]=new Point(1000,1000); Positions[7]=new Point(1000,1000);
-
-       // Positions[1] = new Point(80, 480);
+        Positions[0] = new Point(0, 480);
+        Positions[1] = new Point(80, 480);
         Positions[2] = new Point(160, 480);
-       // Positions[3] = new Point(240, 480);
-       // Positions[4] = new Point(320, 480);
+        Positions[3] = new Point(240, 480);
+        Positions[4] = new Point(320, 480);
         Positions[5] = new Point(400, 480);
-       // Positions[6] = new Point(480, 480);
+        Positions[6] = new Point(480, 480);
 
-     //  Positions[7] = new Point(560, 480);
-        Positions[6]=new Point(1000,1000);
+        Positions[7] = new Point(560, 480);
         Positions[8] = new Point(0, 560);
         Positions[9] = new Point(80, 560);
         Positions[10] = new Point(160, 560);

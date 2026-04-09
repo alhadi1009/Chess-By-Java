@@ -25,6 +25,18 @@ public class Animation {
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
                 System.out.println("Rook move completed!");
+                MovingElement.IsVanished(index, allPoints.Positions[index]);
+                 if(index>15)
+                  {
+                      
+                      Indicator.firstPersonIndicator=true;
+                      Indicator.secondPersonIndicator=false;
+                  }else 
+                  {
+                      Indicator.firstPersonIndicator=false;
+                      Indicator.secondPersonIndicator=true;
+                  }
+                
                 past.x = allPoints.Positions[index].x / 80;
                 past.y = allPoints.Positions[index].y / 80;
                 if (index > 15) {
@@ -66,6 +78,19 @@ public class Animation {
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
                 System.out.println("Knight move completed!");
+                
+                                MovingElement.IsVanished(index, allPoints.Positions[index]);
+
+                 if(index>15)
+                  {
+                      Indicator.firstPersonIndicator=true;
+                      Indicator.secondPersonIndicator=false;
+                  }else 
+                  {
+                      Indicator.firstPersonIndicator=false;
+                      Indicator.secondPersonIndicator=true;
+                  }
+                
                 past.x = allPoints.Positions[index].x / 80;
                 past.y = allPoints.Positions[index].y / 80;
                 if (index > 15) {
@@ -107,6 +132,19 @@ public class Animation {
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
                 System.out.println("Bishop move completed!");
+                                MovingElement.IsVanished(index, allPoints.Positions[index]);
+
+                
+                 if(index>15)
+                  {
+                      Indicator.firstPersonIndicator=true;
+                      Indicator.secondPersonIndicator=false;
+                  }else 
+                  {
+                      Indicator.firstPersonIndicator=false;
+                      Indicator.secondPersonIndicator=true;
+                  }
+                 
                 past.x = allPoints.Positions[index].x / 80;
                 past.y = allPoints.Positions[index].y / 80;
                 if (index > 15) {
@@ -148,6 +186,18 @@ public class Animation {
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
                 System.out.println("Queen move completed!");
+                                MovingElement.IsVanished(index, allPoints.Positions[index]);
+
+                  if(index>15)
+                  {
+                      Indicator.firstPersonIndicator=true;
+                      Indicator.secondPersonIndicator=false;
+                  }else 
+                  {
+                      Indicator.firstPersonIndicator=false;
+                      Indicator.secondPersonIndicator=true;
+                  }
+
                 past.x = allPoints.Positions[index].x / 80;
                 past.y = allPoints.Positions[index].y / 80;
                 if (index > 15) {
@@ -187,6 +237,17 @@ public class Animation {
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
                 System.out.println("King move completed!");
+                                MovingElement.IsVanished(index, allPoints.Positions[index]);
+
+                 if(index>15)
+                  {
+                      Indicator.firstPersonIndicator=true;
+                      Indicator.secondPersonIndicator=false;
+                  }else 
+                  {
+                      Indicator.firstPersonIndicator=false;
+                      Indicator.secondPersonIndicator=true;
+                  }
                 past.x = allPoints.Positions[index].x / 80;
                 past.y = allPoints.Positions[index].y / 80;
                 if (index > 15) {
@@ -225,7 +286,20 @@ public class Animation {
             // Animate move with callback
             panel.animateMove(index, past, present, () -> {
                 // Callback runs after animation finishes
-                System.out.println("Queen move completed!");
+                System.out.println("Pawn move completed!");
+                                MovingElement.IsVanished(index, allPoints.Positions[index]);
+
+                 if(index>15)
+                  {
+                      Indicator.firstPersonIndicator=true;
+                      Indicator.secondPersonIndicator=false;
+                  }else 
+                  {
+                      Indicator.firstPersonIndicator=false;
+                      Indicator.secondPersonIndicator=true;
+                  }
+                 
+                 
                 past.x = allPoints.Positions[index].x / 80;
                 past.y = allPoints.Positions[index].y / 80;
                 if (index > 15) {
