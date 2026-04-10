@@ -18,17 +18,8 @@ public class MovingElement {
     private static ArrayList<Boolean> WhitePawn = new ArrayList<>(Arrays.asList(true, true, true, true, true, true, true, true));
 
     public static boolean ValidPawnMoveBlack(Point past, Point present, int index) {
-        //  System.out.println("Points"+present.x+present.y+past.x+past.y);
-        if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
-            int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
-        
-            if (( check > 15 && index > 15) || (check <= 15 && index <= 15)) {
-                return false;
-            }
-            if ((index > 15 && check == 12) || (index <= 15 && check == 28)) {
-                return false;
-            }
-        }
+          System.out.println("Points"+present.x+present.y+past.x+past.y);
+      
 
         if (Math.abs(present.x - past.x) > 1 || Math.abs(present.y - past.y) > 2) {
             return false;
@@ -72,33 +63,25 @@ public class MovingElement {
 
     // THIS PART IS COMPLETE ; OK 
     public static boolean ValidRookMoveBlack(Point past, Point present, int index) {
+       
 
         System.out.println("past.x" + past.x + "past.y" + past.y + "present.x" + present.x + "present.y" + present.y);
-        if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
-            int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
-            System.out.println("1");
-            if (( check > 15 && index > 15) || (check <= 15 && index <= 15)) {
-                return false;
-            }
-            if ((index > 15 && check == 12) || (index <= 15 && check == 28)) {
-                return false;
-            }
-        }
+       
         if (past.x == present.x) {
             if (past.y > present.y) {
                 for (int i = 1; i < past.y - present.y; i++) {
                     if (LoopingSystem.isPlayerPositioned(new Point(past.x * 80, (past.y - i) * 80))) {
                         return false;
                     }
-                }
+                } 
                 return true;
             } else if (past.y < present.y) {
                 for (int i = 1; i < present.y - past.y; i++) {
                     if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, (present.y - i) * 80))) {
                         return false;
                     }
-                      System.out.println("one{}"+present.x * 80+"  "+ (present.y-i) * 80);
-                }
+                     // System.out.println("one{}"+present.x * 80+"  "+ (present.y-i) * 80);
+                } 
                 return true;
             }
         } else if (past.y == present.y) {
@@ -107,7 +90,7 @@ public class MovingElement {
                     if (LoopingSystem.isPlayerPositioned(new Point((past.x - i) * 80, past.y * 80))) {
                         return false;
                     }
-                }
+                } 
                 return true;
             } else if (past.x < present.x) {
                 for (int i = 1; i < present.x - past.x; i++) {
@@ -115,6 +98,8 @@ public class MovingElement {
                         return false;
                     }
                 }
+                       
+
                 return true;
             }
         }
@@ -122,16 +107,7 @@ public class MovingElement {
     }
 
     public static boolean ValidKnightMoveBlack(Point past, Point present, int index) {
-        if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
-            int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
-            System.out.println("1");
-            if (( check > 15 && index > 15) || (check <= 15 && index <= 15)) {
-                return false;
-            }
-            if ((index > 15 && check == 12) || (index <= 15 && check == 28)) {
-                return false;
-            }
-        }
+     
         int X1 = Math.abs(present.x - past.x);
         int Y1 = Math.abs(present.y - past.y);
         if ((X1 == 1 && Y1 == 2) || (X1 == 2 && Y1 == 1)) {
@@ -142,27 +118,22 @@ public class MovingElement {
     }
 
     public static boolean ValidBishopMoveBlack(Point past, Point present, int index) {
-        if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
-            int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
-            if (( check > 15 && index > 15) || (check <= 15 && index <= 15)) {
-                return false;
-            }
-            if ((index > 15 && check == 12) || (index <= 15 && check == 28)) {
-                return false;
-            }
-        }
+     
+
 
         int X1 = Math.abs(present.x - past.x);
         int Y1 = Math.abs(present.y - past.y);
         if (X1 != Y1) {
             return false;
         }
+        System.out.println(present+"   "+past);
         if (present.x > past.x && present.y > past.y) {
             for (int i = 1; i < X1; i++) {
                 if (LoopingSystem.isPlayerPositioned(new Point((past.x + i) * 80, (past.y + i) * 80))) {
                     return false;
                 }
             }
+            
             return true;
         } else if (present.x < past.x && present.y < past.y) {
             for (int i = 1; i < X1; i++) {
@@ -170,6 +141,7 @@ public class MovingElement {
                     return false;
                 }
             }
+            
             return true;
         } else if (present.x < past.x && present.y > past.y) {
             for (int i = 1; i < X1; i++) {
@@ -177,13 +149,18 @@ public class MovingElement {
                     return false;
                 }
             }
+            
             return true;
         } else if (present.x > past.x && present.y < past.y) {
             for (int i = 1; i < X1; i++) {
-                if (LoopingSystem.isPlayerPositioned(new Point((past.x + i) * 80, (past.y - i) * 80))) {
+                Point temp= new Point(((past.x+i)*80),((past.y-i)*80));
+                if (LoopingSystem.isPlayerPositioned(new Point(temp))){
+                   
                     return false;
                 }
+                 
             }
+           System.out.println(X1+"this is X1");
             return true;
         }
         return false;
@@ -209,23 +186,6 @@ public class MovingElement {
         }
         return false;
     }
-
-//    public static void IsVanished(int index, Point pt)
-//    {
-//        if(index<=15)
-//        {
-//            for(int i=16;i<32;i++)
-//            {
-//                if(allPoints.Positions[i]==pt && i!=28)allPoints.Positions[i]=new Point(10000,10000);
-//            }
-//        }else 
-//        {
-//            for(int i=0;i<16 ; i++)
-//            {
-//                 if(allPoints.Positions[i]==pt && i!=13)allPoints.Positions[i]=new Point(10000,10000);
-//            }
-//        }
-//    }
     
     public static void IsVanished(int index, Point pt) {
 
@@ -236,7 +196,7 @@ public class MovingElement {
         for (int i = 0; i < 16; i++) {
             if (allPoints.Positions[i] != null &&
                 allPoints.Positions[i].equals(pt) &&
-                i != 13) {
+                i != 12) {
 
                 allPoints.Positions[i] = new Point(10000, 10000);
                 return;
