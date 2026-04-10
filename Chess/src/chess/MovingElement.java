@@ -40,7 +40,7 @@ public class MovingElement {
                 }
 
             }
-        } else { // int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
+        } else { 
             if (present.x == past.x && present.y - past.y == 2 && WhitePawn.get(index-16)) {
                 WhitePawn.set(index-16, false);
                 return true;
@@ -61,7 +61,7 @@ public class MovingElement {
         return false;
     }
 
-    // THIS PART IS COMPLETE ; OK 
+  
     public static boolean ValidRookMoveBlack(Point past, Point present, int index) {
        
 
@@ -80,7 +80,7 @@ public class MovingElement {
                     if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, (present.y - i) * 80))) {
                         return false;
                     }
-                     // System.out.println("one{}"+present.x * 80+"  "+ (present.y-i) * 80);
+                   
                 } 
                 return true;
             }
@@ -178,7 +178,7 @@ public class MovingElement {
             if (LoopingSystem.isPlayerPositioned(new Point(present.x * 80, present.y * 80))) {
                 int check = LoopingSystem.isPlayerIndex(new Point(present.x * 80, present.y * 80));
                
-                if ((check <= 0 && check > 15 && index > 15) || (check <= 15 && index <= 15)) {
+                if (( check > 15 && index > 15) || (check <= 15 && index <= 15)) {
                     return false;
                 }
             }

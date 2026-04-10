@@ -13,14 +13,7 @@ import java.awt.Point;
 public class TracSystem {
 
     public static boolean IsMyKingSafe(int index) {
-        for (int i = 0; i < 16; i++) {
-            System.out.print(allPoints.Positions[i]);
-        }
-        System.out.println("Black done ");
-        for (int i = 16; i < 32; i++) {
-            System.out.print(allPoints.Positions[i]);
-        }
-        System.out.println("White done ");
+       
 
         if (index > 15) {
 
@@ -38,7 +31,7 @@ public class TracSystem {
                         allPoints.Positions[28].y / 80
                 );
 
-                // System.out.println("king "+ king+"  From"+ from );
+               
                 if (i < 8 && MovingElement.ValidPawnMoveBlack(from, king, i)) {
                     return false;
                 }
@@ -62,17 +55,7 @@ public class TracSystem {
                 if (i == 12 && MovingElement.ValidKingMoveBlack(from, king, i)) {
                     return false;
                 }
-
-//
-//
-//
-//if(i<8 && MovingElement.ValidPawnMoveBlack(allPoints.Positions[i], allPoints.Positions[28], i))return false;
-//                if((i==8 || i==15)&&  MovingElement.ValidRookMoveBlack(allPoints.Positions[i], allPoints.Positions[28], i))return false;
-//                if((i==9 || i== 14) && MovingElement.ValidKnightMoveBlack(allPoints.Positions[i], allPoints.Positions[28], i))return false;
-//                if((i==10 || i== 13) && MovingElement.ValidBishopMoveBlack(allPoints.Positions[i], allPoints.Positions[28], i))return false;
-//                if(i==11 && MovingElement.ValidQueenMoveBlack(allPoints.Positions[i], allPoints.Positions[28], i)) return false;
-//                if(i==12 && MovingElement.ValidKingMoveBlack(allPoints.Positions[i], allPoints.Positions[28], i))return false;
-//                
+            
             }
             Indicator.isWhiteKingUnderAttack = false;
             return true;
@@ -114,14 +97,7 @@ public class TracSystem {
                 if (i == 28 && MovingElement.ValidKingMoveBlack(from, king, i)) {
                     return false;
                 }
-
-//                if(i<24 && MovingElement.ValidPawnMoveBlack(allPoints.Positions[i], allPoints.Positions[13], i))return false;
-//                if((i==24 || i==31)&&  MovingElement.ValidRookMoveBlack(allPoints.Positions[i], allPoints.Positions[12], i))return false;
-//                if((i==25 || i== 30) && MovingElement.ValidKnightMoveBlack(allPoints.Positions[i], allPoints.Positions[12], i))return false;
-//                if((i==26 || i== 29) && MovingElement.ValidBishopMoveBlack(allPoints.Positions[i], allPoints.Positions[12], i))return false;
-//                if(i==27 && MovingElement.ValidQueenMoveBlack(allPoints.Positions[i], allPoints.Positions[12], i)) return false;
-//                if(i==28 && MovingElement.ValidKingMoveBlack(allPoints.Positions[i], allPoints.Positions[12], i))return false;
-//            
+         
             }
             Indicator.isBlackKingUnderAttack = false;
             return true;
@@ -130,10 +106,11 @@ public class TracSystem {
     }
 
     public static boolean IsMyKingSafeByOwn(int index, Point pnt) {
-
+ System.out.println("King index== "+ index+" & points"+pnt);
         if (index > 15) {
+            
             for (int i = 0; i < 16; i++) {
-                if (allPoints.Positions[index].equals(allPoints.Positions[i])) {
+                if (allPoints.Positions[28].equals(allPoints.Positions[i])) {
                     continue;
                 }
                 Point from = new Point(
@@ -142,10 +119,10 @@ public class TracSystem {
                 );
 
                 Point to = new Point(
-                        pnt.x / 80,
-                        pnt.y / 80
+                        pnt.x ,
+                        pnt.y 
                 );
-
+System.out.print(from +"  " +to +" done "+i );
                 if (i < 8 && MovingElement.ValidPawnMoveBlack(from, to, i)) {
                     return false;
                 }
@@ -165,30 +142,12 @@ public class TracSystem {
                     return false;
                 }
 
-//                if (i < 8 && MovingElement.ValidPawnMoveBlack(allPoints.Positions[i], pnt, i)) {
-//                    return false;
-//                }
-//                if ((i == 8 || i == 15) && MovingElement.ValidRookMoveBlack(allPoints.Positions[i], pnt, i)) {
-//                    return false;
-//                }
-//                if ((i == 9 || i == 14) && MovingElement.ValidKnightMoveBlack(allPoints.Positions[i], pnt, i)) {
-//                    return false;
-//                }
-//                if ((i == 10 || i == 13) && MovingElement.ValidBishopMoveBlack(allPoints.Positions[i], pnt, i)) {
-//                    return false;
-//                }
-//                if (i == 11 && MovingElement.ValidQueenMoveBlack(allPoints.Positions[i], pnt, i)) {
-//                    return false;
-//                }
-//                if (i == 12 && MovingElement.ValidKingMoveBlack(allPoints.Positions[i], pnt, i)) {
-//                    return false;
-//                }
             }
             Indicator.isWhiteKingUnderAttack = false;
             return true;
         } else {
             for (int i = 16; i < 32; i++) {
- if (allPoints.Positions[index].equals(allPoints.Positions[i])) {
+ if (allPoints.Positions[12].equals(allPoints.Positions[i])) {
                     continue;
                 }
  
@@ -198,8 +157,8 @@ public class TracSystem {
                 );
 
                 Point to = new Point(
-                        pnt.x / 80,
-                        pnt.y / 80
+                        pnt.x ,
+                        pnt.y
                 );
  
  

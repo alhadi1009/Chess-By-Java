@@ -105,8 +105,8 @@ System.out.println(col+"  Col & row"+ row);
                             int pastIndex = LoopingSystem.isPlayerIndex(new Point(selectedCol * 80, selectedRow * 80));
                             int presentIndex = LoopingSystem.isPlayerIndex(new Point(col * 80, row * 80));
 
-                            System.out.println("Past index" + pastIndex + selectedRow +"row and col"+selectedCol);
-                            System.out.println("present index" + presentIndex);
+                           // System.out.println("Past index" + pastIndex + selectedRow +"row and col"+selectedCol);
+                          //  System.out.println("present index" + presentIndex);
                             // 0 to 7 ok remember it hadi ;
                             if (pastIndex >= 0 && pastIndex <= 7 && MovingElement.ValidPawnMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
 // Write that code function . because Black Pawn could move // and last check king 
@@ -145,7 +145,7 @@ System.out.println(col+"  Col & row"+ row);
                     //Indicator.firstPersonIndicator=false;
                     int col = e.getX() / 80;
                     int row = e.getY() / 80;
-System.out.println(col+"  Col & row"+ row);
+//    System.out.println(col+"  Col & row"+ row);
 
                     Point target = new Point(col * 80, row * 80);
                     if (LoopingSystem.isPlayerPositioned(target) && LoopingSystem.isPlayerIndex(target) > 15) {
@@ -164,8 +164,8 @@ System.out.println(col+"  Col & row"+ row);
                             int pastIndex = LoopingSystem.isPlayerIndex(new Point(selectedCol * 80, selectedRow * 80));
                             int presentIndex = LoopingSystem.isPlayerIndex(new Point(col * 80, row * 80));
 
-                            System.out.println("Past index" + pastIndex);
-                            System.out.println("present index" + presentIndex);
+                        //    System.out.println("Past index" + pastIndex);
+                         //   System.out.println("present index" + presentIndex);
                             // 0 to 7 ok remember it hadi ;
                             if (pastIndex >= 16 && pastIndex <= 23 && MovingElement.ValidPawnMoveBlack(new Point(selectedCol, selectedRow), new Point(col, row), pastIndex)) {
 // Write that code function . because Black Pawn could move // and last check king 
@@ -228,7 +228,16 @@ System.out.println(col+"  Col & row"+ row);
                 if (row == selectedRow && col == selectedCol) {
                     g2D.setColor(Color.YELLOW); // highlight color
                 }
-                g2D.fillRect(col * cell, row * cell, cell, cell); // col=x, row=y
+               
+                
+                if(Indicator.isBlackKingUnderAttack && row== (allPoints.Positions[12].y)/80 && col ==(allPoints.Positions[12].x)/80 )
+                {
+                    g2D.setColor(new Color(128, 0, 128));
+                }
+                if(Indicator.isWhiteKingUnderAttack && row== (allPoints.Positions[28].y)/80 && col ==(allPoints.Positions[28].x)/80)
+                {
+                    g2D.setColor(new Color(128, 0, 128));
+                } g2D.fillRect(col * cell, row * cell, cell, cell); // col=x, row=y
             }
         }
 

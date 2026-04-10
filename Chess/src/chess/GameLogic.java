@@ -97,12 +97,12 @@ public class GameLogic {
     
     public static void CheckGameOver()
 {
-    // Black turn ended → check white
+    
     if(Indicator.firstPersonIndicator)
     {
         boolean kingSafe = TracSystem.IsMyKingSafe(28);
 
-        if(!HasAnyMove(false)) // white has no move
+        if(!HasAnyMove(false)) 
         {
             if(!kingSafe)
             {
@@ -115,12 +115,12 @@ public class GameLogic {
         }
     }
 
-    // White turn ended → check black
+    
     else
     {
         boolean kingSafe = TracSystem.IsMyKingSafe(12);
 
-        if(!HasAnyMove(true)) // black has no move
+        if(!HasAnyMove(true)) 
         {
             if(!kingSafe)
             {
